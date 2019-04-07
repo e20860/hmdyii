@@ -1,0 +1,4 @@
+[Sun Mar 31 10:54:21.554491 2019] [core:alert] [pid 5112:tid 880] [client 127.0.0.1:50433] D:/WebWorksPHP/hmdoll.ru/.htaccess: DocumentRoot not allowed here
+[Sun Mar 31 10:55:06.140369 2019] [core:alert] [pid 5112:tid 880] [client 127.0.0.1:50435] D:/WebWorksPHP/hmdoll.ru/.htaccess: DocumentRoot not allowed here
+[Sun Mar 31 10:55:07.513171 2019] [core:alert] [pid 5112:tid 880] [client 127.0.0.1:50436] D:/WebWorksPHP/hmdoll.ru/.htaccess: DocumentRoot not allowed here
+[Sun Mar 31 10:55:18.573591 2019] [core:alert] [pid 5112:tid 880] [client 127.0.0.1:50437] D:/WebWorksPHP/hmdoll.ru/.htaccess: DocumentRoot not allowed here
