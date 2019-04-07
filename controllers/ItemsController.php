@@ -21,15 +21,25 @@ class ItemsController extends Controller
             ],
         ];
     }
-
+    
+    /**
+     *  Выводит список товаров в категории $id
+     * @param type $id
+     * @return text
+     */
     
     public function actionCategory($id)
     {
         $model = Categories::findOne($id);
         $products = $model->products;
+        $view = Yii::$app->request->get('view');
+        if(!isset($view)){
+            $view = 0;
+        }
         return $this->render('items',[
             'model' => $model,
             'products' => $products,
+            'view' => $view,
         ]);
     }
     

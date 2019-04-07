@@ -66,8 +66,22 @@ $this->title = 'Список товаров';
                   </div>
                   <div class="col-lg-3 col-md-3 col-sm-3 hidden-xs view_list_prod">
                     <p><strong>Вид:</strong>
-                      <a href="#"><i class="glyphicon glyphicon-th"></i><span>Сетка</span></a>
-                      <a href="#"><i class="glyphicon glyphicon-th-list"></i><span>Список</span></a>
+                        <?php
+                            $class1 = ' active';
+                            $class2 = '';
+                            if($view == 1){
+                                $class1 = '';
+                                $class2 = ' active';
+                            }
+                        ?>
+                      <a href="/items/category?id=<?= $model->id;?>&view=0">
+                          <i class="glyphicon glyphicon-th <?= $class1;?>"></i>
+                          <span>Сетка</span>
+                      </a>
+                      <a href="/items/category?id=<?= $model->id;?>&view=1">
+                          <i class="glyphicon glyphicon-th-list <?= $class2;?>"></i>
+                          <span>Список</span>
+                      </a>
                     </p>
                   </div>
                 </div>
@@ -80,8 +94,13 @@ $this->title = 'Список товаров';
               } else {
                   $img = 'gag.jpeg';
               } 
-              ?>      
-                <div class="col-lg-4 col-md-6 col-sm-4 col-xs-12">
+              ?> 
+                <?php 
+                    $class_view = $view==0?'col-lg-4 col-md-6 col-sm-4 col-xs-12':
+                                  'col-lg-12 col-md-12 col-sm-12 col-xs-12 view_list';
+                ?>    
+                <div class="<?= $class_view?>">
+                <!-- -->    
                   <div class="product">
                     <a href="/items/prod?id=<?=$product->id;?>" class="product_img">
                       <span>-10%</span>

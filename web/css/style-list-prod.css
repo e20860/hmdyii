@@ -480,6 +480,15 @@ header{
     display: inline-block;
     font-size: 30px;
 }
+.view_list{
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+.view_list .product .product_img{
+    width: 35%;
+    display: block;
+    float: left;
+}
 
 /*Корзина*/
 .cart_status{
@@ -618,9 +627,6 @@ header{
 .btn_cart_wrap .btn_cart_zakaz i{
 	margin-left: 5px;
 }
-
-
-
 
 /*Карточка товара*/
 .page_prod .img_prod{
@@ -816,7 +822,7 @@ header{
 	text-align: right;
 }
 .view_list_prod span{
-	color: #ccc;
+    color: #ccc;
     left: 0;
     position: absolute;
     right: 0;
@@ -825,6 +831,9 @@ header{
 .view_list_prod i{
 	display: block;
 	font-size: 24px;
+	color:#ccc;
+}
+.view_list_prod .active {
 	color:#333;
 }
 .view_list_prod a{
@@ -836,11 +845,8 @@ header{
 .view_list_prod a:hover{
 	text-decoration: none;
 }
-.view_list_prod a:last-child i{
-	color:#ccc;
-}
 .view_list_prod a:hover i{
-	color:#333;
+	color:#F33;
 }
 .header_list_prod{
 	margin-bottom: 20px;
