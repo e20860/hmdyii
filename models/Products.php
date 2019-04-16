@@ -12,6 +12,7 @@ use Yii;
  * @property string $name
  * @property int $price
  * @property int $old_price
+ * @property string $keywords
  * @property string $description
  *
  * @property Characteristics[] $characteristics
@@ -36,7 +37,7 @@ class Products extends \yii\db\ActiveRecord
         return [
             [['cat_id', 'name', 'price', 'old_price', 'description'], 'required'],
             [['cat_id', 'price', 'old_price'], 'integer'],
-            [['description'], 'string'],
+            [['description', 'keywords'], 'string'],
             [['name'], 'string', 'max' => 255],
             [['cat_id'], 'exist', 'skipOnError' => true, 'targetClass' => Categories::className(), 'targetAttribute' => ['cat_id' => 'id']],
         ];
@@ -53,6 +54,7 @@ class Products extends \yii\db\ActiveRecord
             'name' => 'Наименование',
             'price' => 'Цена',
             'old_price' => 'Старая цена',
+            'keywords' => 'Ключевые слова',
             'description' => 'Описание',
         ];
     }

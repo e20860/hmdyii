@@ -2,3 +2,7 @@
 [Sun Mar 31 10:55:06.140369 2019] [core:alert] [pid 5112:tid 880] [client 127.0.0.1:50435] D:/WebWorksPHP/hmdoll.ru/.htaccess: DocumentRoot not allowed here
 [Sun Mar 31 10:55:07.513171 2019] [core:alert] [pid 5112:tid 880] [client 127.0.0.1:50436] D:/WebWorksPHP/hmdoll.ru/.htaccess: DocumentRoot not allowed here
 [Sun Mar 31 10:55:18.573591 2019] [core:alert] [pid 5112:tid 880] [client 127.0.0.1:50437] D:/WebWorksPHP/hmdoll.ru/.htaccess: DocumentRoot not allowed here
+[Mon Apr 15 18:31:15.008909 2019] [php7:warn] [pid 2808:tid 888] [client 127.0.0.1:49896] PHP Warning:  require_once(/../functions.php): failed to open stream: No such file or directory in D:\\WebWorksPHP\\hmdoll.ru\\web\\index.php on line 12
+[Mon Apr 15 18:31:15.009909 2019] [php7:error] [pid 2808:tid 888] [client 127.0.0.1:49896] PHP Fatal error:  require_once(): Failed opening required '/../functions.php' (include_path='.;C:\\php\\pear') in D:\\WebWorksPHP\\hmdoll.ru\\web\\index.php on line 12
+[Mon Apr 15 18:31:52.773069 2019] [php7:warn] [pid 2808:tid 888] [client 127.0.0.1:49897] PHP Warning:  require_once(@app/functions.php): failed to open stream: No such file or directory in D:\\WebWorksPHP\\hmdoll.ru\\web\\index.php on line 12
+[Mon Apr 15 18:31:52.773069 2019] [php7:error] [pid 2808:tid 888] [client 127.0.0.1:49897] PHP Fatal error:  require_once(): Failed opening required '@app/functions.php' (include_path='.;C:\\php\\pear') in D:\\WebWorksPHP\\hmdoll.ru\\web\\index.php on line 12

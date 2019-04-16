@@ -1,6 +1,6 @@
 
 $(document).ready(function(){
-    $(".menu_top .navbar-toggle").on("click", function(){
+    $(".navbar-nav").on("click", function(){
         if($(this).hasClass("active"))
         {
                 $(this).removeClass("active");

@@ -10,6 +10,7 @@ use Yii;
  * @property int $id
  * @property string $name
  * @property string $img
+ * @property string $keywords
  * @property string $description
  *
  * @property Products[] $products
@@ -31,7 +32,7 @@ class Categories extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'img', 'description'], 'required'],
-            [['rescription'], 'string'],
+            [['description', 'keywords'], 'string'],
             [['name', 'img'], 'string', 'max' => 255],
         ];
     }
@@ -45,6 +46,7 @@ class Categories extends \yii\db\ActiveRecord
             'id' => 'Номер',
             'name' => 'Наименование',
             'img' => 'Изображение',
+            'keywords' => 'Ключевые слова',
             'description' => 'Описание',
         ];
     }

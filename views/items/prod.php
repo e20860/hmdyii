@@ -8,7 +8,7 @@
 
 $imgCnt = count($images);
 
-$this->title = 'Карточка изделия';
+//$this->title = 'Карточка изделия';
 ?>
 <div class="container items-prod">
     <div class="row">

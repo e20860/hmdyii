@@ -113,3 +113,8 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+.navbar-collapse, .navbar-default{
+    background: #000;
+    border-color: #000;
+    color: #e7e7e7;
+}

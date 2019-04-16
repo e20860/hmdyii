@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900&subset=cyrillic');
 *{
-	font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 header{
-	display: block;
-	width:100%;
-	background: url("../images/header_fon.jpg") no-repeat 50% 0;
-	overflow: hidden;
+    display: block;
+    width:100%;
+    background: url("../images/header_fon.jpg") no-repeat 50% 0;
+    overflow: hidden;
     position: relative;
 }
 .header_top{
@@ -75,7 +75,7 @@ header{
 	color:#ff5b23;
 }
 .cart_top a{
-	background: #ff5b23 none repeat scroll 0 0;
+    background: #ff5b23 none repeat scroll 0 0;
     color: #fff;
     display: block;
     float: right;
@@ -99,7 +99,7 @@ header{
 	/*margin-bottom:150px;*/
 }
 .menu_top li a{
-	color: #fff;
+    color: #fff;
     display: block;
     font: bold 20px/26px "Roboto",sans-serif;
     overflow: hidden;
@@ -790,6 +790,9 @@ header{
 #bs-example-navbar-collapse-1 li a:hover{
 	color:#ff5b23;
 }
+#w0-collapse li a:hover{
+	color:#ff5b23;
+}
 .value_cart input{
 	width:60px;
 	text-align: center;
@@ -976,7 +979,7 @@ header{
 	    background-color: #ccc;
 	}
 	#bs-example-navbar-collapse-1{
-		background-color: #000;
+            background-color: #000;
 	    bottom: 0;
 	    height: 100%;
 	    left: 0;
@@ -987,6 +990,20 @@ header{
 	    z-index: 111;
 	    padding-top: 10%;
 	}
+
+        #w0-collapse{
+            background-color: #000;
+	    bottom: 0;
+	    height: 100%;
+	    left: 0;
+	    position: fixed;
+	    right: 0;
+	    top: 0;
+	    width: 100%;
+	    z-index: 111;
+	    padding-top: 10%;
+	}
+        
 	.menu_top .navbar-toggle.active{
 		border-color: transparent;
 	    height: 22px;
@@ -1019,7 +1036,7 @@ header{
 		position: absolute;
 	}
 	#bs-example-navbar-collapse-1 li{
-		float: none;
+            float: none;
 	    display: block;
 	    position: relative;
 	    width: 70%;
@@ -1027,7 +1044,18 @@ header{
 	    border-left: 0px solid #2f2f2f;
 	    border-right: 0px solid #2f2f2f;
 	}
-	#bs-example-navbar-collapse-1 li a{
+
+	#w0-collapse li{
+            float: none;
+	    display: block;
+	    position: relative;
+	    width: 70%;
+	    margin:0 auto;
+	    border-left: 0px solid #2f2f2f;
+	    border-right: 0px solid #2f2f2f;
+	}
+        
+	#w0-collapse li a{
 		text-align: center;
 	}
 	.menu_top li a::before{
@@ -1090,7 +1118,7 @@ header{
 		display: none;
 	}
 	header {
-	    height: 500px;
+	    height: 480px;
 	}
 	.footer_menu {
 	    display: block;

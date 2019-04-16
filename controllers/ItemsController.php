@@ -3,11 +3,12 @@
 namespace app\controllers;
 
 use Yii;
-use yii\web\Controller;
+use app\controllers\AppController;
 use app\models\Categories;
 use app\models\Products;
+use yii\data\Pagination;
 
-class ItemsController extends Controller
+class ItemsController extends AppController
 {
 
     /**
@@ -30,16 +31,37 @@ class ItemsController extends Controller
     
     public function actionCategory($id)
     {
-        $model = Categories::findOne($id);
-        $products = $model->products;
-        $view = Yii::$app->request->get('view');
-        if(!isset($view)){
-            $view = 0;
+        $params = \Yii::$app->request->get();
+        if(!isset($params['sortirovka_prod'])){
+            $params['sortirovka_prod'] = 0;
         }
+        if(!isset($params['number_prod_str'])){
+            $params['number_prod_str'] = 12;
+        }
+        // Порядок вывода: 0 - сетка(умолч), 1 - список
+        if(!isset($params['view'])){
+            $params['view'] = 0;
+        }
+        
+        $model = Categories::findOne($id);
+        $query = Products::find()->where(['cat_id' =>$id]);
+        
+        $countQuery = clone $query;
+        $pages = new Pagination([
+            'totalCount' => $countQuery->count(),
+            'pageSize' => $params['number_prod_str'],
+            ]);
+        $products = $query->offset($pages->offset)
+                  ->limit($pages->limit)
+                  ->all();
+
+        $this->setMeta('Список товаров | '. $model->name,$model->keywords, $model->description);
+
         return $this->render('items',[
             'model' => $model,
             'products' => $products,
-            'view' => $view,
+            'params' => $params,
+            'pages' => $pages,
         ]);
     }
     
@@ -68,7 +90,7 @@ class ItemsController extends Controller
         if(!isset($reviews)){
             $reviews = [];
         }
-        
+        $this->setMeta($model->name,$model->keywords,$model->description);
         return $this->render('prod',[
             'model' => $model,
             'images' => $images,
