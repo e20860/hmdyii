@@ -1,8 +1,29 @@
 <?php
 
+use yii\widgets\LinkPager;
+
 /* @var $this yii\web\View */
 /* @var $model Object */
-$this->title = 'Список товаров';
+/* @var $products array */
+/* @var $params array */
+/* @var $pages int */
+
+// Состав элементов управления:
+// Сортировка (sortirovka_prod)
+$sortSel = [
+    ['val' => '0','descr' =>'--'],
+    ['val' => '1','descr' =>'Цене, по возрастанию'],
+    ['val' => '2','descr' =>'Цене, по убыванию'],
+    ['val' => '3','descr' =>'Названию товара, от А до Я'],
+    ['val' => '4','descr' =>'Названию товара, от Я до А'],
+];
+ // Постраничный вывод (number_prod_str)
+$pageSel =[
+    ['val' => '12', 'descr' => '12'],
+    ['val' => '24', 'descr' => '24'],
+    ['val' => '48', 'descr' => '48'],
+];
+$view = $params['view'];
 ?>
 <div class="container">
         <div class="row">
@@ -25,20 +46,22 @@ $this->title = 'Список товаров';
                         <img class="img-responsive" src="/images/<?= $model->img;?>">
                     </div>
                     <div class="row">
+                        <br>
                         <p><?= $model->description;?></p>
                     </div>
                 </div>
             </div>
             <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                 <div class="row content">
-              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 header_list_prod">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 header_list_prod">
                 <div class="row">
-                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                    <h1><?= $model->name;?></h1>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 value_prod">
-                      <p>В наличии: <?=count($model->products);?></p>
-                  </div>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <h3>Выбрать</h3>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 value_prod">
+                        <br>
+                        <p>В наличии: <?=count($model->products);?></p>
+                    </div>
                 </div>
               </div>
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -47,20 +70,32 @@ $this->title = 'Список товаров';
                     <form action="#">
                       <p><strong>Сортировка по:</strong>
                         <select name="sortirovka_prod">
-                          <option selected="selected">--</option>
-                          <option value="0">Цене, по возрастанию</option>
-                          <option value="1">Цене, по убыванию</option>
-                          <option value="2">Названию товара, от А до Я</option>
-                          <option value="3">Названию товара, от Я до А</option>
+                            <?php foreach ($sortSel as $str):?>
+                                <option value="<?=$str['val']?>"
+                                <?php 
+                                    if($str['val']==$params['sortirovka_prod']){
+                                    echo 'selected="selected"';
+                                }?>
+                                >
+                                <?=$str['descr']?></option>
+                            <?php endforeach;?>
                          </select>
                       </p>
                       <p><strong>Показать:</strong>
-                        <select name="/number_prod_str">
-                          <option selected="selected">12</option>
-                          <option value="0">24</option>
-                          <option value="1">48</option>
-                         </select>
+                        <select name="number_prod_str">
+                            <?php foreach ($pageSel as $str):?>
+                                <option value="<?=$str['val']?>"
+                                <?php 
+                                    if($str['val']==$params['number_prod_str']){
+                                    echo 'selected="selected"';
+                                }?>
+                                >
+                                <?=$str['descr']?></option>
+                            <?php endforeach;?>
+                        </select>
                       </p>
+                      <input type="hidden" name="id" value="<?= $model->id;?>">
+                      <input type="hidden" name="view" value="<?= $view;?>">
                       <button type="submit">Применить</button>
                     </form>
                   </div>
@@ -106,7 +141,14 @@ $this->title = 'Список товаров';
                       <span>-10%</span>
                       <img  src="/images/<?=$img;?>">
                     </a>
-                    <a href="/items/prod?id=<?=$product->id;?>" class="product_title"><?=$product->name;?></a>
+                    <a href="/items/prod?id=<?=$product->id;?>" class="product_title">
+                      <?=$product->name;?>
+                    </a>
+                    <?php if($view==1): ?>
+                      <p>
+                          <?= $product->description;?>
+                      </p>
+                    <?php endif;?>
                     <div class="product_price">
                       <span class="price"><?=$product->price;?> руб</span>
                       <span class="price_old"><?=$product->old_price;?></span>
@@ -117,29 +159,10 @@ $this->title = 'Список товаров';
                     </div>
                   </div>
                 </div>
-              <?php endforeach;?>        
+              <?php endforeach;?>
+                <div class="clearfix"></div>      
+              <?php echo LinkPager::widget(['pagination' => $pages,]);?>
               <?php endif;?>
-              <?php      
-              /* шаблон записи
-              <div class="col-lg-4 col-md-6 col-sm-4 col-xs-12">
-                <div class="product">
-                  <a href="#" class="product_img">
-                    <span>-10%</span>
-                    <img src="/images/hrs_01.png">
-                  </a>
-                  <a href="#" class="product_title">Конь в пальто</a>
-                  <div class="product_price">
-                    <span class="price">3500 руб</span>
-                    <span class="price_old">3700 руб</span>
-                  </div>
-                  <div class="product_btn">
-                    <a href="#" class="cart"><i class="glyphicon glyphicon-shopping-cart"></i></a>
-                    <a href="#" class="mylist">Список желаний</a>
-                  </div>
-                </div>
-              </div>
-               */
-              ?>      
           </div>
         </div>
     	</div>
