@@ -154,7 +154,9 @@ $view = $params['view'];
                       <span class="price_old"><?=$product->old_price;?></span>
                     </div>
                     <div class="product_btn">
-                      <a href="#" class="cart"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                      <a href="#" class="cart" data-id="<?=$product->id;?>">
+                          <i class="glyphicon glyphicon-shopping-cart"></i>
+                      </a>
                       <a href="#" class="mylist">Список желаний</a>
                     </div>
                   </div>

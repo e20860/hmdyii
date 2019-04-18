@@ -118,3 +118,14 @@ a.desc:after {
     border-color: #000;
     color: #e7e7e7;
 }
+
+.del-item{
+    cursor: pointer;
+}
+
+.modal-header, .modal-footer{
+    background-color: #faf7f0;
+}
+.modal-header h2{
+    color: #ff5b23;
+}

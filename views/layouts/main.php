@@ -7,7 +7,7 @@ use app\widgets\Alert;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
+use yii\bootstrap\Modal;
 use app\assets\AppAsset;
 use app\assets\DefAsset;
 
@@ -32,7 +32,20 @@ if($curRoute ==='site/index') {
 </head>
 <body>
 <?php $this->beginBody() ?>
+<?php
+Modal::begin([
+    'header' => '<h2>Ваша корзина</h2>',
+    'size' => 'modal-lg',
+    'id' => 'hm-cart',
+    'footer' => '
+        <button type="button" class="btn btn-default" data-dismiss="modal">Продолжить покупки</button>
+        <button type="button" class="btn btn-success">Перейти к заказу</button>
+        <button type="button" class="btn btn-danger" id="hmcClear">Очистить корзину</button>
+        ',
+]);
 
+Modal::end();
+?>
 <div class="wrap">
 <header>
       <div class="container">
@@ -57,9 +70,9 @@ if($curRoute ==='site/index') {
               </div>
             </div>
             <div class="cart_top">
-              <a href="/items/cart">
+                <a href="#" id="cart-top">
                 <i class="glyphicon glyphicon-shopping-cart"></i>
-                <span>0</span>
+                <span id="cart-qty"><?= isset($_SESSION['cart.qty'])?$_SESSION['cart.qty']:0;?></span>
               </a>
             </div>
           </div>
