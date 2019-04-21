@@ -38,7 +38,7 @@ Modal::begin([
     'size' => 'modal-lg',
     'id' => 'hm-cart',
     'footer' => '
-        <button type="button" class="btn btn-default" data-dismiss="modal">Продолжить покупки</button>
+        <button type="button" class="btn btn-default buynext" data-dismiss="modal">Продолжить покупки</button>
         <button type="button" class="btn btn-success">Перейти к заказу</button>
         <button type="button" class="btn btn-danger" id="hmcClear">Очистить корзину</button>
         ',
@@ -61,8 +61,8 @@ Modal::end();
                 <a href="/login"><i class="glyphicon glyphicon-lock"></i>Войти</a>
               </div>
               <div class="search_top">
-              	<form>
-	                <input placeholder="Поиск" type="text">
+                  <form action="/items/search" method="get">
+	                <input placeholder="Поиск" type="text" name="srch">
 	                <button type="submit" name="submit_search">
 	                  <i class="glyphicon glyphicon-search"></i>
 	                </button>

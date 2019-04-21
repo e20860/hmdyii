@@ -58,8 +58,12 @@ $imgCnt = count($images);
                     <button id="minus">-</button>
                     <button id="plus">+</button>
                 </form>
-                <a href="#" class="add_cart_prod"><i class="glyphicon glyphicon-shopping-cart"></i> В корзину</a>
-                <a href="#" class="add_mylist_prod"><i class="glyphicon glyphicon-heart"></i>В список желаний</a>
+                <a href="#" class="add_cart_prod cart" data-id="<?=$model->id?>">
+                    <i class="glyphicon glyphicon-shopping-cart"></i> В корзину
+                </a>
+                <a href="#" class="add_mylist_prod">
+                    <i class="glyphicon glyphicon-heart"></i>В список желаний
+                </a>
             </div>
           </div>
 

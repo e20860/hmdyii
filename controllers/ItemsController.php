@@ -65,15 +65,50 @@ class ItemsController extends AppController
         ]);
     }
     
-    /**
-     *  Показывает корзину
-     * @return text
-     */
-    public function actionCart()
-    {
-        return $this->render('cart');
-    }
     
+    public function actionSearch()
+    {
+        $params = \Yii::$app->request->get();
+        if (!isset($params['sortirovka_prod'])) {
+            $params['sortirovka_prod'] = 0;
+        }
+        if (!isset($params['number_prod_str'])) {
+            $params['number_prod_str'] = 12;
+        }
+        // Порядок вывода: 0 - сетка(умолч), 1 - список
+        if (!isset($params['view'])) {
+            $params['view'] = 0;
+        }
+
+        $srch = $params['srch'];
+        if(!$srch) {
+            throw new \yii\web\HttpException(404, 'Неверный запрос');
+        }
+        $model = new Categories();
+        $model->name = 'Результаты поиска';
+        $model->img = 'srch.jpg';
+        $model->description = 'Результаты поиска по Вашему запросу';
+
+        $query = Products::find()->where(['like' ,'name', $srch]);
+        
+        $countQuery = clone $query;
+        $pages = new Pagination([
+            'totalCount' => $countQuery->count(),
+            'pageSize' => $params['number_prod_str'],
+            ]);
+        $products = $query->offset($pages->offset)
+                  ->limit($pages->limit)
+                  ->all();
+
+        $this->setMeta('Результаты поиска '. $srch);
+
+        return $this->render('items',[
+            'model' => $model,
+            'products' => $products,
+            'params' => $params,
+            'pages' => $pages,
+        ]);        
+    }
     /**
      *  Показывает карточку продукта
      * @return text

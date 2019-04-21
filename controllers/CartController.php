@@ -18,12 +18,14 @@ class CartController extends AppController{
     public function actionAdd()
     {
         $id = Yii::$app->request->get('id');
+        $qty = Yii::$app->request->get('qty');
+        $qty = !$qty ? 1 : $qty;
         $product = Products::findOne($id);
         if(empty($product)) return false;
         $session = Yii::$app->session;
         $session->open();
         $cart = new Cart();
-        $cart->addToCart($product);
+        $cart->addToCart($product, $qty);
         return $this->renderAjax('cart-modal', [
             'session' => $session,
         ]);
@@ -58,7 +60,10 @@ class CartController extends AppController{
             'session' => $session,
         ]);        
     }
-    
+    /**
+     * Выводит модальное окно корзины
+     * @return type
+     */
     public function actionViewCart()
     {
         $session = Yii::$app->session;
@@ -68,4 +73,14 @@ class CartController extends AppController{
         ]);        
         
     }
+    
+        /**
+     *  Показывает корзину
+     * @return text
+     */
+    public function actionShowCart()
+    {
+        return $this->render('cart');
+    }
+
 }
