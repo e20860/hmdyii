@@ -144,6 +144,12 @@ $(document).ready(function(){
                 alert(e.statusText);
             }
         });        
-        
     });
+    /**
+     * Переход к оформлению заказа
+     */
+    $("#toCart").on('click',function(){
+        window.location = '/cart/cart-order';
+    });
+    
 });

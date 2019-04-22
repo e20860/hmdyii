@@ -28,8 +28,8 @@ $this->title = 'Корзина';
         </div>
         <div class="col-lg-12">
           <ul class="cart_status">
-            <li class="active"><span>1. Заказ</span></li>
-            <li><span>2. Адрес</span></li>
+            <li><span>1. Заказ</span></li>
+            <li class="active"><span>2. Адрес</span></li>
             <li><span>3. Доставка</span></li>
             <li><span>4. Оплата</span></li>
           </ul>

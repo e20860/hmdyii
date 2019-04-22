@@ -39,7 +39,7 @@ Modal::begin([
     'id' => 'hm-cart',
     'footer' => '
         <button type="button" class="btn btn-default buynext" data-dismiss="modal">Продолжить покупки</button>
-        <button type="button" class="btn btn-success">Перейти к заказу</button>
+        <button type="button" class="btn btn-success" id="toCart">Перейти к заказу</button>
         <button type="button" class="btn btn-danger" id="hmcClear">Очистить корзину</button>
         ',
 ]);

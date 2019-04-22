@@ -78,7 +78,7 @@ class CartController extends AppController{
      *  Показывает корзину
      * @return text
      */
-    public function actionShowCart()
+    public function actionCartOrder()
     {
         return $this->render('cart');
     }
