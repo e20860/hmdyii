@@ -31,15 +31,6 @@ use yii\captcha\Captcha;
             Спасибо за письмо. В ближайшее время мы Вам ответим.
         </div>
 
-        <p>
-            <?php if (Yii::$app->mailer->useFileTransport): ?>
-                Because the application is in development mode, the email is not sent but saved as
-                a file under <code><?= Yii::getAlias(Yii::$app->mailer->fileTransportPath) ?></code>.
-                Please configure the <code>useFileTransport</code> property of the <code>mail</code>
-                application component to be false to enable email sending.
-            <?php endif; ?>
-        </p>
-
     <?php else: ?>
         <p>
             Если Вы хотите связаться с нами, пожалуйста, заполните форму.
