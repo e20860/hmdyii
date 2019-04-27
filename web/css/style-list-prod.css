@@ -501,7 +501,7 @@ header{
 }
 .cart_status li{
 	display: block;
-	width:25%;
+	width:33.3%;
 	float:left;
 	font-size:18px;
 	font-weight: 700;
@@ -602,7 +602,14 @@ header{
 	text-decoration: none;
 	opacity: 0.8;
 }
+.btn_cart_wrap button:hover{
+	text-decoration: none;
+	opacity: 0.8;
+}
 .btn_cart_wrap a i{
+	color:#ff5b23;
+}
+.btn_cart_wrap button i{
 	color:#ff5b23;
 }
 .btn_cart_wrap .btn_cart_im{

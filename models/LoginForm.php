@@ -34,6 +34,14 @@ class LoginForm extends Model
             ['password', 'validatePassword'],
         ];
     }
+    public function attributeLabels()
+    {
+        return [
+            'username' => 'Логин',
+            'password' => 'Пароль',
+            'rememberMe' => 'Запомнить',
+        ];
+    }
 
     /**
      * Validates the password.
@@ -48,19 +56,27 @@ class LoginForm extends Model
             $user = $this->getUser();
 
             if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Incorrect username or password.');
+                $this->addError($attribute, 'Имя или пароль введены неправильно');
             }
         }
     }
 
     /**
      * Logs in a user using the provided username and password.
+     * Remember fresh AuthKey if needed
      * @return bool whether the user is logged in successfully
      */
     public function login()
     {
         if ($this->validate()) {
-            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
+            $timeToSave = 0;
+            if($this->rememberMe){
+                $u = $this->getUser();
+                $u->generateAuthKey();
+                $u->save();
+                $timeToSave = 3600 * 24 * 30; // Куки хранятся месяц
+            }
+            return Yii::$app->user->login($this->getUser(), $timeToSave);
         }
         return false;
     }

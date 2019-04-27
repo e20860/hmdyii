@@ -80,7 +80,12 @@ class CartController extends AppController{
      */
     public function actionCartOrder()
     {
-        return $this->render('cart');
+        $session = Yii::$app->session;
+        $session->open();
+        $this->setMeta('Оформление | корзина');        
+        return $this->render('cart',[
+            'session' => $session,
+        ]);
     }
 
 }

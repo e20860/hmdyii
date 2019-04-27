@@ -125,26 +125,3 @@ $imgCnt = count($images);
     </div>
     </div>
 </div>
-
-<div class="container-fluid write_email_and_sseti">
-  <div class="container">
-    <div class="row write_email_and_sseti_wrap">
-      <div class="col-lg-6 col-md-6 col-sm-7 col-xs-12 write_email">
-        <p>Рассылка</p>
-        <form>
-          <button type="submit">
-                  <i class="glyphicon glyphicon-chevron-right"></i>
-                </button>
-          <input type="text" placeholder="Введите E-mail">
-        </form>
-      </div>
-      <div class="col-lg-6 col-md-6 col-sm-5 hidden-xs sseti_wrap">
-        <div>
-          <a href="#"><i class="fa fa-facebook"></i></a>
-          <a href="#"><i class="fa fa-vk"></i></a>
-          <a href="#"><i class="fa fa-instagram"></i></a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>

@@ -8,16 +8,27 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
-$this->title = 'Обратная связь';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-contact container">
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="site-contact container filter">
+    <div class="row">
+        <div class="contant_wrap">
+            <div class="col-lg-12">
+                <div class="navigation">
+                    <ul>
+                        <li><a href="/"><i class="glyphicon glyphicon-home"></i></a></li>
+                        <li><span>Обратная связь</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <h2><?= Html::encode($this->title) ?></h2>
 
     <?php if (Yii::$app->session->hasFlash('contactFormSubmitted')): ?>
 
         <div class="alert alert-success">
-            Спасибо за Ваше письмо. В ближайшее время мы Вам ответим.
+            Спасибо за письмо. В ближайшее время мы Вам ответим.
         </div>
 
         <p>
@@ -30,7 +41,6 @@ $this->params['breadcrumbs'][] = $this->title;
         </p>
 
     <?php else: ?>
-
         <p>
             Если Вы хотите связаться с нами, пожалуйста, заполните форму.
             Спасибо.

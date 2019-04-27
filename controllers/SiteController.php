@@ -32,7 +32,7 @@ class SiteController extends AppController
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post'],
+                    'logout' => ['post','get'],
                 ],
             ],
         ];
@@ -80,8 +80,8 @@ class SiteController extends AppController
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         }
-
         $model->password = '';
+        $this->setMeta('Авторизация');
         return $this->render('login', [
             'model' => $model,
         ]);
@@ -109,9 +109,9 @@ class SiteController extends AppController
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
             Yii::$app->session->setFlash('contactFormSubmitted');
-
             return $this->refresh();
         }
+        $this->setMeta('Обратная связь');
         return $this->render('contact', [
             'model' => $model,
         ]);
@@ -124,6 +124,7 @@ class SiteController extends AppController
      */
     public function actionAbout()
     {
+        $this->setMeta('О нас');
         return $this->render('about');
     }
 }

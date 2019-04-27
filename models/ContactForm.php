@@ -41,7 +41,7 @@ class ContactForm extends Model
             'name' => 'Ваше имя',
             'email' => 'Ваш email',
             'subject' => 'Тема',
-            'body' => 'Содержание',
+            'body' => 'Содержание сообщения',
             'verifyCode' => 'Подтвердите, что Вы не робот',
         ];
     }

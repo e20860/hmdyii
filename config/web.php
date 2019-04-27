@@ -9,6 +9,12 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'language' => 'ru-RU',
+    'modules' => [
+        'admin' => [
+            'class' => 'app\modules\admin\Module',
+            'layout' => 'adm',
+        ],
+    ],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -31,10 +37,17 @@ $config = [
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            // send all mails to a file by default. You have to set
-            // 'useFileTransport' to false and configure a transport
-            // for the mailer to send real emails.
-            'useFileTransport' => true,
+            'useFileTransport' => false,
+            
+            'transport' => [
+                    'class' => 'Swift_SmtpTransport',
+                    'host' => 'smtp.yandex.ru',
+                    'username' => 'hm.doll@yandex.ru',
+                    'password' => 'Luybasha100103',
+                    'port' => '465', 
+                    'encryption' => 'ssl',
+                ],
+            
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -52,6 +65,7 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 '' => 'site/index',
+                'admin' => 'admin/default/index',
                 '<action>' => 'site/<action>'
             ],
         ],

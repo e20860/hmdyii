@@ -126,11 +126,17 @@ a.desc:after {
 .modal-header, .modal-footer{
     background-color: #faf7f0;
 }
-.modal-header h2{
+.modal-header h2, .filter h2{
     color: #ff5b23;
 }
 
 .buynext{
     color: #fff;
     background-color: #343434;
+}
+.jumbotron{
+    padding-top: 0;
+}
+.jumbotron p{
+        font-size: 18px;
 }
