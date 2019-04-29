@@ -38,9 +38,12 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'На сайт', 'url' => ['/site/index']],
-            ['label' => 'Тили-тили', 'url' => ['#']],
-            ['label' => 'Трали-вали', 'url' => ['#']],
+            ['label' => 'Главная', 'url' => ['default/index']],
+            ['label' => 'Заказы', 'url' => ['orders/index']],
+            ['label' => 'Товары', 'url' => ['products/index']],
+            ['label' => 'Категории', 'url' => ['categories/index']],
+            ['label' => 'Пользователи', 'url' => ['user/index']],
+            
         ],
     ]);
     NavBar::end();

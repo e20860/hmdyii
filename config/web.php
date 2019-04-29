@@ -13,6 +13,7 @@ $config = [
         'admin' => [
             'class' => 'app\modules\admin\Module',
             'layout' => 'adm',
+            'defaultRoute' => 'orders/index',
         ],
     ],
     'aliases' => [
@@ -65,7 +66,7 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 '' => 'site/index',
-                'admin' => 'admin/default/index',
+                'admin' => 'admin/orders/index',
                 '<action>' => 'site/<action>'
             ],
         ],
