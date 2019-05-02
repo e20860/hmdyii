@@ -39,7 +39,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'email:email',
             'phone',
             'address',
-            'ostatus.name',
+            [
+                'attribute' => 'status',
+                'value' => $model->ostatus->name,
+            ],
             [
                 'attribute' => 'delivery',
                 'value' => function ($data){

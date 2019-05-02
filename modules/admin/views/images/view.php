@@ -4,14 +4,14 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\modules\admin\models\Categories */
+/* @var $model app\modules\admin\models\Images */
 
-$this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Категории', 'url' => ['index']];
+$this->title = $model->file;
+$this->params['breadcrumbs'][] = ['label' => 'Картинки', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="categories-view">
+<div class="images-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Выдействительно хотите удалить эту запись?',
+                'confirm' => 'Вы уверены в необходимости удаления?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -30,20 +30,26 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'name',
-            'img',
             [
-            'attribute' => 'img',
+                'attribute' => 'prod_id',
+                'value' => function($model){
+                    return $model->prod->name;
+                },
+            ],
+            
+            'file',
+            [
+            'attribute' => 'file',
             'label' => 'Картинка',
             'format' => 'html',
             'value' => function($model) {
-                return Html::img('/web/images/' . $model->img, [
+                return Html::img('/web/images/' . $model->file, [
                             'width' => '150px', 'style' => 'max-width:100%'
                 ]);
             }
-        ],
-        'keywords',
-            'description:ntext',
+            ],
+            
+            'ord',
         ],
     ]) ?>
 

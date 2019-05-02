@@ -94,6 +94,25 @@ class CategoriesController extends Controller
             'model' => $model,
         ]);
     }
+    /**
+     *  Подгружает файл изображения
+     * @return type
+     */
+    public function actionUploadpic() {
+        //$key = Yii::$app->request->post();
+        $path = Yii::$app->basePath . '/web/images/';
+        $fname = $_FILES['imgFile']['name'];
+        //return json_encode($gal);
+        if (0 < $_FILES['imgFile']['error']) {
+            $ret = 'Ошибка: ' . $_FILES['imgFile']['error'] . '<br>';
+        } else {
+            move_uploaded_file(
+                    $_FILES['imgFile']['tmp_name'], 
+                    $path . $_FILES['imgFile']['name']);
+            $ret = $fname;
+        }
+        return $ret;
+    }
 
     /**
      * Deletes an existing Categories model.

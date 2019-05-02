@@ -31,7 +31,8 @@ class Categories extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'img', 'keywords', 'description'], 'required'],
+            [['name', 'img',], 'required'],
+            [[ 'keywords', 'description',],'safe'],
             [['description'], 'string'],
             [['name', 'img'], 'string', 'max' => 255],
             [['keywords'], 'string', 'max' => 256],
@@ -44,11 +45,11 @@ class Categories extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'name' => 'Name',
-            'img' => 'Img',
-            'keywords' => 'Keywords',
-            'description' => 'Description',
+            'id' => '№',
+            'name' => 'Наименование',
+            'img' => 'Файл изображения',
+            'keywords' => 'Ключевые слова',
+            'description' => 'Мета описание',
         ];
     }
 

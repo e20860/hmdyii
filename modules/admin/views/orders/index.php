@@ -25,8 +25,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             //'user_id',
-            'created_at',
-            'updated_at',
+            [
+                'attribute' => 'created_at',
+                'label' => 'Дата создания',
+                'format' => ['date','php:d.m.Y'],
+            ],
+            //'created_at',
+            //'updated_at',
             'name',
             'email:email',
             //'phone',
@@ -39,7 +44,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'delivery',
                 'value' => function ($data){
                     return !$data->delivery ? 'не доставлен':'доставлен';
-               }
+                },
+                //'contentOptions' => ['class' => 'text-primary'],
             ],
 
             [

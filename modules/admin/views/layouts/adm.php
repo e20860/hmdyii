@@ -8,9 +8,9 @@ use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
-use app\assets\AppAsset;
+use app\assets\AdmAsset;
 
-AppAsset::register($this);
+AdmAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -41,6 +41,7 @@ AppAsset::register($this);
             ['label' => 'Главная', 'url' => ['default/index']],
             ['label' => 'Заказы', 'url' => ['orders/index']],
             ['label' => 'Товары', 'url' => ['products/index']],
+            ['label' => 'Картинки', 'url' => ['images/index']],
             ['label' => 'Категории', 'url' => ['categories/index']],
             ['label' => 'Пользователи', 'url' => ['user/index']],
             
