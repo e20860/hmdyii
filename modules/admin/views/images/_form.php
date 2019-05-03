@@ -15,9 +15,7 @@ use app\modules\admin\models\Products;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'prod_id')->dropDownList(
- ArrayHelper::map(Products::find()->asArray()->all(),'id','name'),
-            ['prompt'=>'Выберите товар'] ) ?>
+    
 
     <div class="row">
         <div class="col-sm-4">
@@ -29,14 +27,16 @@ use app\modules\admin\models\Products;
                     ])?>
         </div>
         <div class="col-sm-8">
+            <?= $form->field($model, 'prod_id')->dropDownList(
+ ArrayHelper::map(Products::find()->asArray()->all(),'id','name'),
+            ['prompt'=>'Выберите товар'] ) ?>
             <?= $form->field($model, 'file')->textInput(['maxlength' => true]) ?>
             <label for="imgFile">Сменить изображение</label>
             <input type="file" id="imgFile">
+             <?= $form->field($model, 'ord')->textInput() ?>
         </div>
     </div>
     <hr>
-    <?= $form->field($model, 'ord')->textInput() ?>
-
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
     </div>
