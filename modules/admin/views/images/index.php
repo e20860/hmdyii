@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
+use app\modules\admin\models\Products;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\admin\models\ImagesSearch */
@@ -29,6 +31,8 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'prod_id',
                 'value' => 'prod.name',
+                'filter' => ArrayHelper::map(Products::find()->all(),'id','name'),
+                
             ],
             'file',
             [
