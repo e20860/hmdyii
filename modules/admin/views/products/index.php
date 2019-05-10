@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\admin\models\ProductSearch */
@@ -30,10 +31,15 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'cat_id',
                 'value' => 'cat.name',
+                'filter' => ArrayHelper::map(app\modules\admin\models\Categories::find()->all(),'id','name'),
             ],
             'name',
             'price',
-            //'old_price',
+            [
+                'attribute' => 'stock',
+                'value' => 'stk.name',
+                'filter' => ArrayHelper::map(app\modules\admin\models\Stock::find()->all(),'id','name'),
+            ],
             //'keywords',
             //'description:ntext',
 

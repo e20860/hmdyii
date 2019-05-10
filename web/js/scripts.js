@@ -32,7 +32,15 @@ $(document).ready(function(){
     
     $("#review_btn").on("click", function(){
         var dta = $("#review_form").serialize();
-        alert(dta);
+        //alert(dta);
+        $.ajax({
+           url: '/items/save-review',
+           type: 'post',
+           data: dta,
+           success: function(data) {
+               alert(data);
+           },
+        });
         return false;
     });
     

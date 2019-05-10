@@ -173,7 +173,7 @@ Modal::end();
                     <div class="footer_menu">
                         <h3><i class="fa fa-user"></i>&nbsp;Учетная запись</h3>
 		    	<ul>
-                            <li><a href="#">Войти</a></li>
+                            <li><a href="/site/login">Войти</a></li>
                             <li><a href="#">Зарегистрироваться</a></li>
                             <li><a href="#">Мои заказы</a></li>
                             <li><a href="#">Список желаний</a></li>

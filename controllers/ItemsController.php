@@ -7,6 +7,7 @@ use app\controllers\AppController;
 use app\models\Categories;
 use app\models\Products;
 use yii\data\Pagination;
+use yii\helpers\Url;
 
 class ItemsController extends AppController
 {
@@ -115,6 +116,12 @@ class ItemsController extends AppController
      */
     public function actionProd($id)
     {
+        $post = Yii::$app->request->post();
+        if(!isset($post['Reviews'])){
+            $newrew = new \app\models\Reviews();
+            $newrew->load($post);
+            $newrew->save(); 
+         }
         $model = Products::findOne($id);
         $images = $model->images;
         $reviews = $model->reviews;
@@ -126,13 +133,25 @@ class ItemsController extends AppController
             $reviews = [];
         }
         $this->setMeta($model->name,$model->keywords,$model->description);
+
+        $newrew = new \app\models\Reviews();
         return $this->render('prod',[
             'model' => $model,
             'images' => $images,
             'category' => $category,
             'reviews' => $reviews,
+            'newrew' => $newrew,
         ]);
     }
-
-
+    
+    public function actionSaveReview()
+    {
+        $data = \Yii::$app->request->post();
+        $newrew = new \app\models\Reviews();
+        $newrew->load($data);
+        $newrew->save();
+        debug($newrew);
+        //$this->redirect(['/items/prod', 'id' => $newrew->prod_id]);
+        
+    }
 }

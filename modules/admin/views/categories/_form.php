@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
+use mihaildev\ckeditor\CKEditor;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\admin\models\Categories */
@@ -27,14 +28,18 @@ use yii\widgets\ActiveForm;
             <?= $form->field($model, 'img')->textInput(['maxlength' => true]) ?>
             <label for="imgFile">Сменить изображение</label>
             <input type="file" id="imgFile">
+            <br>
+            <?= $form->field($model, 'keywords')->textInput(['maxlength' => true]) ?>    
         </div>
     </div>
     <hr>
 
-    <?= $form->field($model, 'keywords')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
-
+    <?= $form->field($model, 'description')->widget(CKEditor::className(),[
+    'editorOptions' => [
+        'preset' => 'basic', 
+        'inline' => false, //по умолчанию false
+    ],
+    ]);?>
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
     </div>

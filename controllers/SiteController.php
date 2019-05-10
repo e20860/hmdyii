@@ -78,6 +78,7 @@ class SiteController extends AppController
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            Yii::info('Пользователь '.Yii::$app->user->identity->name .' вошёл','info');
             return $this->goBack();
         }
         $model->password = '';

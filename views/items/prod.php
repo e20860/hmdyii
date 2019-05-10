@@ -1,13 +1,20 @@
 <?php
 
+use yii\widgets\ActiveForm;
+use yii\helpers\Html;
+
 /* @var $this yii\web\View */
 /* @var $model object  */
 /* @var $images array */
 /* @var $category object */
 /* @var $reviews array */
+/* @var $newrew object*/
 
 $imgCnt = count($images);
-
+if(Yii::$app->session->hasFlash('review')){
+   $msg = Yii::$app->session->getFlash('review');
+   debug($msg);
+}
 //$this->title = 'Карточка изделия';
 ?>
 <div class="container items-prod">
@@ -34,7 +41,7 @@ $imgCnt = count($images);
             <div class="content_prod">
               <h1><?=$model->name?></h1>
               <p><span>Артикул:</span> MYDOLL01</p>
-              <p>В наличии</p>
+              <p><?=$model->stk->name?></p>
               <p><?=$model->description?></p>
               <br>
               <div class="row">
@@ -72,13 +79,14 @@ $imgCnt = count($images);
                 
             <?php if(count($reviews) > 0):?>    
               <h3>Отзывы:</h3>
-              <?php foreach ($reviews as $reviw): ?>
+              
+              <?php foreach ($reviews as $review): ?>
               <div class="reviews">
                 <div class="reviews_img">
                   <img src="/images/avatar.png">
                 </div>
                 <div class="reviews_contant">
-                  <p class="reviews_title"><?= $review->user->name;?> 
+                  <p class="reviews_title"><?= $review->name;?> 
                       <span><?=$review->r_date;?></span></p>
                   <div class="reviews_rating">
                     <?php for($i=1;$i<6;$i++):?>  
@@ -95,15 +103,26 @@ $imgCnt = count($images);
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <p>Отзыв о товаре:</p>
                 </div>
-                  <form id="review_form">
+            <?php 
+                $form = ActiveForm::begin([
+                        'id' => 'review_form',
+                        'options'=> [
+                           'class' => 'form-horizontal', 
+                        ],
+                        ]);
+            ?>      
+            <!--      <form method="post" id="review_form" action="/items/review" > -->
                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" name="name" placeholder="Имя">
+                      <?= $form->field($newrew, 'name')->textInput()?>
                   </div>
                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" name="email" placeholder="E-mail">
+                      <?=$form->field($newrew, 'email')->input('email');?>
                   </div>
                   <div class="col-lg-12">
-                    <textarea name="text" placeholder="Отзыв"></textarea>
+                      <?=$form->field($newrew,'text')->textarea(); ?>
+                      <?=$form->field($newrew, 'prod_id')->hiddenInput(['value' => $model->id]);?>
+                      <?=$form->field($newrew, 'user_id')->hiddenInput(['value' => 3])?>
+                      <?=$form->field($newrew, 'r_date')->hiddenInput(['value' => date('Y:m:d')]);?>
                   </div>
                     <div class="col-lg-12 reviews_rating">
                     <i class="glyphicon glyphicon-star rs active" data="1"></i>
@@ -112,11 +131,13 @@ $imgCnt = count($images);
                     <i class="glyphicon glyphicon-star rs" data="4"></i>
                     <i class="glyphicon glyphicon-star rs" data="5"></i>
                   </div>
-                    <input type="hidden" name="rating"  id="rating" value="1"> 
+                    <input type="hidden" name="Reviews[rating]"  id="rating" value="1"> 
                   <div class="col-lg-12">
-                      <button id="review_btn">Добавить</button>
+                      <?= Html::submitButton('Добавить',['id'=>'review_btn'])?>
+                    <!--  <button type="submit">Добавить</button> -->
                   </div>
-                </form>
+             <?php ActiveForm::end();?>       
+            <!--    </form> -->
               </div>
             </div>
           </div>

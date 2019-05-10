@@ -40,8 +40,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'price',
             'old_price',
+            [
+                'attribute' => 'stock',
+                'value' => function($model){
+                    return $model->stk->name;
+                }
+            ],            
             'keywords',
-            'description:ntext',
+            'description:html',
         ],
     ]) ?>
     <hr>

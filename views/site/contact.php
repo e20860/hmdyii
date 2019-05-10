@@ -7,6 +7,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
+use mihaildev\ckeditor\CKEditor;
 
 ?>
 <div class="site-contact container filter">
@@ -22,23 +23,27 @@ use yii\captcha\Captcha;
             </div>
         </div>
     </div>
-    
-    <h2><?= Html::encode($this->title) ?></h2>
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+        <h2><?= Html::encode($this->title) ?></h2>
 
-    <?php if (Yii::$app->session->hasFlash('contactFormSubmitted')): ?>
+        <?php if (Yii::$app->session->hasFlash('contactFormSubmitted')): ?>
 
-        <div class="alert alert-success">
-            Спасибо за письмо. В ближайшее время мы Вам ответим.
+            <div class="alert alert-success">
+                Спасибо за письмо. В ближайшее время мы Вам ответим.
+            </div>
+
+        <?php else: ?>
+            <p>
+                Если Вы хотите связаться с нами, пожалуйста, заполните форму.
+                Спасибо.
+            </p>
+            </div>
         </div>
-
-    <?php else: ?>
-        <p>
-            Если Вы хотите связаться с нами, пожалуйста, заполните форму.
-            Спасибо.
-        </p>
-
         <div class="row">
-            <div class="col-lg-5">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
 
                 <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
 
@@ -48,7 +53,12 @@ use yii\captcha\Captcha;
 
                     <?= $form->field($model, 'subject') ?>
 
-                    <?= $form->field($model, 'body')->textarea(['rows' => 6]) ?>
+                    <?= $form->field($model, 'body')->widget(CKEditor::className(),[
+                        'editorOptions' => [
+                            'preset' => 'basic', 
+                            'inline' => false, //по умолчанию false
+                        ],
+                    ]); ?>
 
                     <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
                         'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',

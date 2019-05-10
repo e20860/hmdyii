@@ -44,6 +44,8 @@ AdmAsset::register($this);
             ['label' => 'Картинки', 'url' => ['images/index']],
             ['label' => 'Категории', 'url' => ['categories/index']],
             ['label' => 'Пользователи', 'url' => ['user/index']],
+            ['label' => 'Отзывы', 'url' => ['reviews/index']],
+            
             
         ],
     ]);

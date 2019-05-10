@@ -14,7 +14,7 @@ use Yii;
  * @property int $old_price
  * @property string $keywords
  * @property string $description
- *
+ * @property int $stock Description
  * @property Characteristics[] $characteristics
  * @property Images[] $images
  * @property OrdItems[] $ordItems
@@ -38,7 +38,7 @@ class Products extends \yii\db\ActiveRecord
     {
         return [
             [['cat_id', 'name', 'price', 'old_price', 'keywords', 'description'], 'required'],
-            [['cat_id', 'price', 'old_price'], 'integer'],
+            [['cat_id', 'price', 'old_price','stock'], 'integer'],
             [['description'], 'string'],
             [['name'], 'string', 'max' => 255],
             [['keywords'], 'string', 'max' => 256],
@@ -59,6 +59,7 @@ class Products extends \yii\db\ActiveRecord
             'old_price' => 'Старая',
             'keywords' => 'Ключевые слова',
             'description' => 'Метаописание',
+            'stock' => 'Готовность к продаже',
         ];
     }
 
@@ -100,5 +101,10 @@ class Products extends \yii\db\ActiveRecord
     public function getReviews()
     {
         return $this->hasMany(Reviews::className(), ['prod_id' => 'id']);
+    }
+    
+    public function getStk()
+    {
+        return $this->hasOne(Stock::className(), ['id' => 'stock']);
     }
 }
