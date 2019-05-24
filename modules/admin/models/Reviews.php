@@ -10,7 +10,7 @@ use Yii;
  * @property string $id
  * @property string $prod_id
  * @property string $user_id
- * @property string $r_date
+ * @property date   $r_date
  * @property string $name
  * @property string $email
  * @property string $text

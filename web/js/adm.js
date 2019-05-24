@@ -25,3 +25,19 @@ $('#imgFile').on('change',function(e){
     e.preventDefault();
     return false;
 });
+$(".alog").on('click',function(e){
+    var dta =$(this).attr('id');
+    $.ajax({
+        type: 'get',
+        url:'/admin/default/get-log',
+        data: {'fname' : dta},
+        success: function(data) {
+            // приходит имя файла
+            $('#info-block').html(data);
+        },
+        error: function(e){
+            console.log(e);
+        }
+    }); //ajax
+    e.preventDefault();
+}); //$(".alog").on('click',function(e){

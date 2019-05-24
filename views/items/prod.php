@@ -2,6 +2,7 @@
 
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
+use mihaildev\ckeditor\CKEditor;
 
 /* @var $this yii\web\View */
 /* @var $model object  */
@@ -73,7 +74,7 @@ if(Yii::$app->session->hasFlash('review')){
                 </a>
             </div>
           </div>
-
+          <hr>  
           <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
             <div class="r_prod">
                 
@@ -90,7 +91,7 @@ if(Yii::$app->session->hasFlash('review')){
                       <span><?=$review->r_date;?></span></p>
                   <div class="reviews_rating">
                     <?php for($i=1;$i<6;$i++):?>  
-                        <i class="glyphicon glyphicon-star <?=$review->rating>$i ? '' : ' active';?>"></i>
+                        <i class="glyphicon glyphicon-star <?=$review->rating>$i-1 ? 'active' : '';?>"></i>
                     <?php endfor;?>
                   </div>
                   <p class="reviews_text"><?= $review->text;?></p>
@@ -98,10 +99,11 @@ if(Yii::$app->session->hasFlash('review')){
               </div>
               <?php endforeach;?>
             <?php endif; ?>  
+              <br>
               <hr>
               <div class="reviews_form">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                  <p>Отзыв о товаре:</p>
+                    <p class="h2" style="color: #ff5b23;">Ваш отзыв о товаре:</p>
                 </div>
             <?php 
                 $form = ActiveForm::begin([
@@ -112,6 +114,23 @@ if(Yii::$app->session->hasFlash('review')){
                         ]);
             ?>      
             <!--      <form method="post" id="review_form" action="/items/review" > -->
+            <div class="row">
+                <div class="col-sm-4">
+                      <?=$form->field($newrew, 'prod_id')
+                              ->hiddenInput(['value' => $model->id])
+                              ->label(false, ['style'=>'display:none']);?>
+                </div>
+                <div class="col-sm-4">
+                      <?=$form->field($newrew, 'user_id')
+                              ->hiddenInput(['value' => 3])
+                              ->label(false, ['style'=>'display:none']);?>
+                </div>
+                <div class="col-sm-4">
+                      <?=$form->field($newrew, 'r_date')
+                              ->hiddenInput(['value' => date('Y-m-d')])
+                              ->label(false, ['style'=>'display:none']);?>
+                </div>
+            </div>
                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                       <?= $form->field($newrew, 'name')->textInput()?>
                   </div>
@@ -119,12 +138,15 @@ if(Yii::$app->session->hasFlash('review')){
                       <?=$form->field($newrew, 'email')->input('email');?>
                   </div>
                   <div class="col-lg-12">
-                      <?=$form->field($newrew,'text')->textarea(); ?>
-                      <?=$form->field($newrew, 'prod_id')->hiddenInput(['value' => $model->id]);?>
-                      <?=$form->field($newrew, 'user_id')->hiddenInput(['value' => 3])?>
-                      <?=$form->field($newrew, 'r_date')->hiddenInput(['value' => date('Y:m:d')]);?>
+                      <?=$form->field($newrew,'text')->widget(CKEditor::className(),[
+        'editorOptions' => [
+            'preset' => 'basic',
+            'inline' => false, //по умолчанию false
+        ],
+    ]);?>
                   </div>
-                    <div class="col-lg-12 reviews_rating">
+            <label class="control-label" for="reviews_rating">Рейтинг:</label>
+            <div class="col-lg-12 reviews_rating" id="reviews_rating">
                     <i class="glyphicon glyphicon-star rs active" data="1"></i>
                     <i class="glyphicon glyphicon-star rs" data="2"></i>
                     <i class="glyphicon glyphicon-star rs" data="3"></i>

@@ -7,7 +7,7 @@ use app\controllers\AppController;
 use app\models\Categories;
 use app\models\Products;
 use yii\data\Pagination;
-use yii\helpers\Url;
+use app\models\Reviews;
 
 class ItemsController extends AppController
 {
@@ -57,7 +57,6 @@ class ItemsController extends AppController
                   ->all();
 
         $this->setMeta('Список товаров | '. $model->name,$model->keywords, $model->description);
-
         return $this->render('items',[
             'model' => $model,
             'products' => $products,
@@ -135,6 +134,7 @@ class ItemsController extends AppController
         $this->setMeta($model->name,$model->keywords,$model->description);
 
         $newrew = new \app\models\Reviews();
+        Yii::info("Просмотр изделия: {$model->name}","info_cat");
         return $this->render('prod',[
             'model' => $model,
             'images' => $images,
@@ -147,11 +147,9 @@ class ItemsController extends AppController
     public function actionSaveReview()
     {
         $data = \Yii::$app->request->post();
-        $newrew = new \app\models\Reviews();
-        $newrew->load($data);
-        $newrew->save();
-        debug($newrew);
-        //$this->redirect(['/items/prod', 'id' => $newrew->prod_id]);
-        
+        $model = new Reviews();
+        if($model->load($data) && $model->save()){
+            $this->redirect(['/items/prod', 'id' => $model->prod_id]);
+        }
     }
 }

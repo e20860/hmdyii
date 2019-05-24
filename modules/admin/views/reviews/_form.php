@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
+use yii\jui\DatePicker;
 use yii\widgets\ActiveForm;
 use app\modules\admin\models\Products;
 use app\modules\admin\models\User;
@@ -21,7 +22,10 @@ use app\modules\admin\models\User;
     <?= $form->field($model, 'user_id')
             ->dropDownList(ArrayHelper::map(User::find()->all(),'id','name')); ?>
 
-    <?= $form->field($model, 'r_date')->textInput() ?>
+    <?= $form->field($model, 'r_date')->widget(\yii\jui\DatePicker::class, [
+        'language' => 'ru',
+        'dateFormat' => 'yyyy-MM-dd',
+    ])?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 

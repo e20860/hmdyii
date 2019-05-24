@@ -28,6 +28,10 @@ class Reviews extends \yii\db\ActiveRecord
     {
         return 'reviews';
     }
+    /**
+     * 
+     * @return array
+     */
 
     /**
      * {@inheritdoc}
@@ -35,11 +39,11 @@ class Reviews extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['prod_id', 'name', 'text', 'rating','email'], 'required'],
+            [['prod_id', 'name', 'text', 'rating','email','user_id'], 'required'],
+            [['r_date'], 'safe'],
             [['prod_id', 'user_id', 'rating'], 'integer'],
             [['text','name'], 'string'],
             [['email'],'email'],
-            [['r_date'], 'date'],
             [['prod_id'], 'exist', 'skipOnError' => true, 'targetClass' => Products::className(), 'targetAttribute' => ['prod_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
@@ -57,7 +61,7 @@ class Reviews extends \yii\db\ActiveRecord
             'r_date' => 'Дата отзыва',
             'name' => 'Кто написал',
             'email' => 'E-mail',
-            'text' => 'Содержимое',
+            'text' => 'Текст отзыва',
             'rating' => 'Оценка (от 1 до 5)',
         ];
     }

@@ -33,6 +33,16 @@ if($curRoute ==='site/index') {
 </head>
 <body>
 <?php $this->beginBody() ?>
+<?php 
+/*
+
+    if (!YII_ENV_DEV) {
+        include_once(Url::to("@app/assets/analytictracking.php"));
+    } 
+ * 
+ */
+ include_once(Url::to("@app/assets/analytictracking.php"));
+?>    
 <?php
 Modal::begin([
     'header' => '<h2>Ваша корзина</h2>',
@@ -108,7 +118,7 @@ Modal::end();
           </div>
         </div>
       </div>
-    <div class="container-fluid menu_top" id="menutop">
+    <div class="container-fluid menu_top" >
             <div class="row">
                 <?php
                 NavBar::begin(['brandImage' => '/images/hmd1_logo.gif']);
@@ -136,14 +146,14 @@ Modal::end();
       <div class="container">
         <div class="row write_email_and_sseti_wrap">
           <div class="col-lg-6 col-md-6 col-sm-7 col-xs-12 write_email">
-              <p>&copy;&nbsp; HMdoll&nbsp; 2019 &nbsp;<i class="fa fa-circle-o-notch"></i></p>
+              <p>&copy;&nbsp; HMdoll&nbsp; 2019</p>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-5 hidden-xs sseti_wrap">
             <div>
               <a href="#"><i class="fa fa-facebook"></i></a>
               <a href="#"><i class="fa fa-twitter"></i></a>
-              <a href="#"><i class="fa fa-vk"></i></a>
-              <a href="#"><i class="fa fa-instagram"></i></a>
+              <a href="https://vk.com/hm_doll"><i class="fa fa-vk"></i></a>
+              <a href="https://www.instagram.com/hm.doll"><i class="fa fa-instagram"></i></a>
             </div>
           </div>
         </div>
@@ -173,18 +183,26 @@ Modal::end();
                     <div class="footer_menu">
                         <h3><i class="fa fa-user"></i>&nbsp;Учетная запись</h3>
 		    	<ul>
-                            <li><a href="/site/login">Войти</a></li>
+                            <?php if(Yii::$app->user->isGuest):?>
+                                <li><a href="/site/login">Войти</a></li>
+                            <?php else:?>
+                                <li><a href="/site/logout">Выйти</a></li>
+                            <?php endif;?>
+                            <!--
                             <li><a href="#">Зарегистрироваться</a></li>
                             <li><a href="#">Мои заказы</a></li>
                             <li><a href="#">Список желаний</a></li>
+                            -->
                         </ul>
                     </div>
 	    	</div>
                 <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 contacts">
                     <h3><i class="fa fa-globe"></i>&nbsp;Контакты</h3>
+                    <!--
                     <p><i class="glyphicon glyphicon-map-marker"></i>Адрес: ул. Краузе, 17 г. Новосибирск, 630061</p>
-                    <p><i class="glyphicon glyphicon-phone-alt"></i>Служба поддержки: 8 (913) 911-55-10</p>
-                    <p><i class="glyphicon glyphicon-envelope"></i>E-mail: hm.doll@yandex.ru</p>
+                    -->
+                    <p><i class="glyphicon glyphicon-phone-alt"></i>Служба поддержки: +7 (913) 911-55-10</p>
+                    <p><i class="glyphicon glyphicon-envelope"></i>E-mail: <a href="mailto:hm.doll@yandex.ru">hm.doll@yandex.ru</a></p>
                 </div>
 	    </div>
 	    	<div class="row">

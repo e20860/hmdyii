@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Categories;
 
 class SiteController extends AppController
 {
@@ -61,8 +62,19 @@ class SiteController extends AppController
      */
     public function actionIndex()
     {
-        //$this->layout = 'default';
-        return $this->render('index');
+        $this->setMeta('Главная'
+                ,'Куклы ручной работы, выкройки, наборы мастер-классы,'
+                . ' подарок ребёнку, сувенир, купить куклу купить выкройку'
+                ,'Интернет магазин кукол ручной работы, выкройки, наборы, мастер-классы');
+        // Две модели на первую страницу
+        $first = date('d',time()) % 2 + 1;
+        $second = $first + 2;
+        $model1 = Categories::findOne($first);
+        $model2 = Categories::findOne($second);
+        return $this->render('index',[
+            'model1' => $model1,
+            'model2' => $model2,
+        ]);
     }
     
     /**
@@ -125,7 +137,9 @@ class SiteController extends AppController
      */
     public function actionAbout()
     {
-        $this->setMeta('О нас');
+        $this->setMeta('О нас',
+                'изготовление кукол выкройки мастер-классы',
+                'мастер по изготлению кукол');
         return $this->render('about');
     }
 }

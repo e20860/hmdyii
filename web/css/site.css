@@ -140,3 +140,7 @@ a.desc:after {
 .jumbotron p{
         font-size: 18px;
 }
+
+.title_img {
+    width: 30%;
+}

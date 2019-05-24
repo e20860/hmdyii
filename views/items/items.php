@@ -138,7 +138,7 @@ $view = $params['view'];
                 <!-- -->    
                   <div class="product">
                     <a href="/items/prod?id=<?=$product->id;?>" class="product_img">
-                      <span>-10%</span>
+                     <!-- <span>-10%</span> -->
                       <img  src="/images/<?=$img;?>">
                     </a>
                     <a href="/items/prod?id=<?=$product->id;?>" class="product_title">

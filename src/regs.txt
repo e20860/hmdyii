@@ -1,0 +1,11 @@
+Регулярные выражения для распарсивания логов
+ACCESS LOG:
+1. ^[\d]*.[\d]*.[\d]*.[\d]*\s*-\s*-\s*\[.*].*$ вся строка
+
+//Logs: Apache web server
+//Successful hits to HTML files only.  Useful for counting the number of page views.
+'^((?#client IP or domain name)S+)s+((?#basic authentication)S+s+S+)s+[((?#date and time)[^]]+)]s+"(?:GET|POST|HEAD) ((?#file)/[^ ?"]+?.html?)??((?#parameters)[^ ?"]+)? HTTP/[0-9.]+"s+(?#status code)200s+((?#bytes transferred)[-0-9]+)s+"((?#referrer)[^"]*)"s+"((?#user agent)[^"]*)"$'
+ 
+//Logs: Apache web server
+//404 errors only
+'^((?#client IP or domain name)S+)s+((?#basic authentication)S+s+S+)s+[((?#date and time)[^]]+)]s+"(?:GET|POST|HEAD) ((?#file)[^ ?"]+)??((?#parameters)[^ ?"]+)? HTTP/[0-9.]+"s+(?#status code)404s+((?#bytes transferred)[-0-9]+)s+"((?#referrer)[^"]*)"s+"((?#user agent)[^"]*)"$'
